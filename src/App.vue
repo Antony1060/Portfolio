@@ -20,6 +20,10 @@
 
 <style>
   html, body {
-    overflow: hidden;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: #212121;
   }
 </style>
