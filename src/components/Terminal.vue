@@ -2,7 +2,7 @@
   <v-container class="blue lighten-2" fluid>
     <v-layout row justify-center>
       <v-flex xs12 lg8>
-        <v-card class="pa-4 mt-8 mb-8 mx-6" id="console" style="font-family: 'Courier New';" dark>
+        <v-card class="pa-4 mt-8 mb-8 mx-6" style="font-family: monospace;" dark>
           <span class="green--text" id="root1"></span>
           <span class="white--text" id="cmd1"></span><br><br>
           <span class="white--text ml-6" id="resp1"></span><br>
@@ -35,7 +35,7 @@
               if(!this.projectsListed) {
                   this.projectsListed = true;
 
-                  let root = "root@antony.red $ ";
+                  let root = "[root@antony.red ~]# ";
                   let cd = "cd ./Projects";
                   let ls = "ls";
                   let projects = this.$store.state.liveProjects;
@@ -79,7 +79,7 @@
           }
       },
       mounted() {
-          let root = "root@antony.red $ ";
+          let root = "[root@antony.red ~]# ";
           let cat = "cat introduction.txt";
           let infoText1 = "Hi, I'm Antony, a 15 year old freelance developer.";
           let infoText2 = "I have an understanding of Java and JavaScript.";

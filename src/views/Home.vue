@@ -4,7 +4,6 @@
     <Skills id="skills"/>
     <Contact />
     <More />
-    <Footer />
   </div>
 </template>
 
@@ -13,12 +12,10 @@
   import Skills from "../components/Skills";
   import Contact from "../components/Contact";
   import More from "../components/More";
-  import Footer from "../components/helper/Footer";
 
   export default {
       name: 'Home',
       components: {
-          Footer,
           More,
           Contact,
           Terminal,

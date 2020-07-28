@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="grey lighten-4" fill-height>
     <v-layout row wrap justify-center align-center class="text-center">
-      <v-row justify="center mb-12" align="center">
+      <v-row justify="center" class="mb-12" align="center">
         <div class="mb-12">
           <p class="display-4 mb-6">¯\_(ツ)_/¯</p><br>
           <span class="display-2">To be added</span><br>
