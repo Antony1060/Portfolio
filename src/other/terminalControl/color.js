@@ -1,0 +1,62 @@
+export default {
+    reset: "[0;0m",
+    prompt: "[38;2;102;187;106m",
+
+    // Foreground colors
+    black: "[0;30m",
+    red: "[0;31m",
+    green: "[0;32m",
+    yellow: "[0;33m",
+    blue: "[0;34m",
+    magenta: "[0;35m",
+    cyan: "[0;36m",
+    white: "[0;37m",
+    blackBright: "[0;90m",
+    redBright: "[0;91m",
+    greenBright: "[0;92m",
+    yellowBright: "[0;93m",
+    blueBright: "[0;94m",
+    magentaBright: "[0;95m",
+    cyanBright: "[0;96m",
+    whiteBright: "[0;97m",
+
+    // Background colors
+    bg: {
+        black: "[0;40m",
+        red: "[0;41m",
+        green: "[0;42m",
+        yellow: "[0;43m",
+        blue: "[0;44m",
+        magenta: "[0;45m",
+        cyan: "[0;46m",
+        white: "[0;47m",
+        backBright: "[0;100m",
+        redBright: "[0;101m",
+        greenBright: "[0;102m",
+        yellowBright: "[0;103m",
+        blueBright: "[0;104m",
+        magentaBright: "[0;105m",
+        cyanBright: "[0;106m",
+        whiteBright: "[0;107m",
+    },
+
+    // Bold oreground colors
+    bold: {
+        black: "[1;30m",
+        red: "[1;31m",
+        green: "[1;32m",
+        yellow: "[1;33m",
+        blue: "[1;34m",
+        magenta: "[1;35m",
+        cyan: "[1;36m",
+        white: "[1;37m",
+        backBright: "[1;90m",
+        redBright: "[1;91m",
+        greenBright: "[1;92m",
+        yellowBright: "[1;93m",
+        blueBright: "[1;94m",
+        magentaBright: "[1;95m",
+        cyanBright: "[1;96m",
+        whiteBright: "[1;97m",
+    }
+}

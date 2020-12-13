@@ -1,6 +1,6 @@
 <template>
   <v-app class="">
-    <Navbar v-if="!this.$router.currentRoute.path.includes('timetable') && !this.$router.currentRoute.path.includes('soon') && !this.$router.currentRoute.path.includes('404')"></Navbar>
+    <Navbar v-if="!this.$router.currentRoute.path.includes('soon')"></Navbar>
 
     <v-content>
       <router-view></router-view>
@@ -10,7 +10,7 @@
       {{ alertOptions.text }}
     </v-alert>
 
-    <Footer v-if="!this.$router.currentRoute.path.includes('timetable') && !this.$router.currentRoute.path.includes('soon') && !this.$router.currentRoute.path.includes('404')"/>
+    <Footer v-if="!this.$router.currentRoute.path.includes('soon')"/>
   </v-app>
 </template>
 

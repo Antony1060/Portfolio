@@ -23,12 +23,13 @@
   export default {
       name: "More",
       data: () => ({
-          aBitMore: "Along with the languages and frameworks specified above, I know HTML, CSS, C and C++.\n" +
-              "            I have had around 5-6 years of experience with general programming.\n" +
-              "            I am currently taking commissions and trying to enlargen my scopes.\n" +
-              "            Project I think are worthy, I will post on my GitHub.\n" +
-              "            Besides being a developer, I am also the CTO and a Manager of Firecloud Hosting,\n" +
-              "            a small startup started by my friend <a href=\"https://derock.dev\">Derock</a>."
+          aBitMore: `Hi.
+                          I've had 6+ years of experience with general programming.
+                          I am currently taking commissions and trying to build a little freelancing career.
+                          If you're interested in working with me, feel free to message me on my Discord :)
+                          Projects I think are worthy will be posted on my GitHub.
+                          Besides being a developer, I am also the CTO of Firecloud Hosting,
+                          a small startup started by my friend <a href="https://derock.dev">Derock</a>.`
       })
   }
 </script>

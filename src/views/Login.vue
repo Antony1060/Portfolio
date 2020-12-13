@@ -50,16 +50,16 @@ export default {
         identity: this.identity,
         password: this.password
       }).then(response => {
-        if(!response.data.data.token) {
+        if(!response.data.token) {
           this.$store.commit("pushAlert", { text: "Something went wrong.", type: "error" })
           return
         }
 
         this.$store.commit("pushAlert", { text: "Logged in. Redirecting....", type: "success" })
-        localStorage.setItem("jwtToken", response.data.data.token)
+        localStorage.setItem("jwtToken", response.data.token)
         this.$router.push({ name: "AdminPanel" })
-      }).catch(error => {
-        this.$store.commit("pushAlert", { text: error.response.data.error, type: "error" })
+      }).catch((error) => {
+        this.$store.commit("pushAlert", { text: `Error: ${error}`, type: "error" })
       })
     }
   }

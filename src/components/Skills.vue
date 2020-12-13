@@ -1,73 +1,77 @@
 <template>
   <v-container>
     <v-layout row justify-center>
-      <v-row xs12 justify="center" class="my-8">
-        <p class="display-1">I can speak</p>
+      <v-row justify="center" class="my-8">
+        <p class="display-1">My skills</p>
       </v-row>
     </v-layout>
-    <v-layout row justify-center wrap class="ma-2 mb-12">
-      <v-row justify="center" class="mt-2 mb-4 mx-4">
-        <v-hover v-slot:default="{ hover }">
-          <v-card :elevation="hover ? 20 : 6" height="420px" width="240px" class="pa-6 pt-2">
-            <div class="text--primary headline mt-6" align="center">
-              <v-img src="../assets/javaLogo.png" height="160px" width="160px"></v-img>
-              Java
-            </div>
-            <div class="black--text font-weight-regular text-center mt-4" style="font-size: 18px">
-              I can make all sorts of programs in java. From simple CLIs to GUIs
-              <v-btn outlined width="140px" class="mt-8" router to="/soon">More</v-btn>
-            </div>
-          </v-card>
-        </v-hover>
-      </v-row>
-      <v-row justify="center" class="mt-2 mb-4 mx-6">
-        <v-hover v-slot:default="{ hover }">
-          <v-card :elevation="hover ? 20 : 6" height="420px" width="240px" class="pa-6 pt-2">
-            <div class="text--primary headline mt-6" align="center">
-              <v-img src="../assets/spigotLogo.png" height="160px" width="160px"></v-img>
-              Spigot
-            </div>
-            <div class="black--text font-weight-regular text-center mt-4" style="font-size: 18px">
-              I can offer highly customizable custom plugins with Spigot.
-              <v-btn outlined width="140px" class="mt-8" router to="/soon">More</v-btn>
-            </div>
-          </v-card>
-        </v-hover>
-      </v-row>
-      <v-row justify="center" class="mt-2 mb-4 mx-6">
-        <v-hover v-slot:default="{ hover }">
-          <v-card :elevation="hover ? 20 : 6" height="420px" width="240px" class="pa-6 pt-2">
-            <div class="text--primary headline mt-6" align="center">
-              <v-img src="../assets/jsLogo.png" height="160px" width="160px"></v-img>
-              JavaScript
-            </div>
-            <div class="black--text font-weight-regular text-center mt-4" style="font-size: 18px">
-              I'm very comfortable with general JS and APIs like Discord.js
-              <v-btn outlined width="140px" class="mt-8" router to="/soon">More</v-btn>
-            </div>
-          </v-card>
-        </v-hover>
-      </v-row>
-      <v-row justify="center" class="mt-2 mb-4 mx-6">
-        <v-hover v-slot:default="{ hover }">
-          <v-card :elevation="hover ? 20 : 6" height="420px" width="240px" class="pa-6 pt-2">
-            <div class="text--primary headline mt-6" align="center">
-              <v-img src="../assets/vueLogo.png" height="160px" width="160px"></v-img>
-              Vue.js
-            </div>
-            <div class="black--text font-weight-regular text-center mt-4" style="font-size: 18px">
-              I understand the Vue ecosystem and can make websites like this
-              <v-btn outlined width="140px" class="mt-8" router to="/soon">More</v-btn>
-            </div>
-          </v-card>
-        </v-hover>
-      </v-row>
+    <v-layout row justify-center wrap class="ma-2 mb-12" style="flex-wrap: wrap">
+      <SkillsCard v-for="(item, index) in skills" :key="index"
+        :image="item.image"
+        :title="item.title"
+        :description="item.description"
+        :route="item.route"/>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-  export default {
-      name: "Skills"
-  }
+import SkillsCard from "@/components/SkillsCard";
+
+export default {
+  name: "Skills",
+  components: {
+    SkillsCard
+  },
+  data: () => ({
+    skills: [{
+        image: "/assets/images/javaLogo.png",
+        title: "Java",
+        description: "I can make all sorts of programs in Java. From simple CLIs to GUIs.",
+        route: "/soon#java"
+      },
+      {
+        image: "/assets/images/kotlinLogo.png",
+        title: "Kotlin",
+        description: "I have worked on many projects built with the Kotlin language.",
+        route: "/soon#kotlin"
+      },
+      {
+        image: "/assets/images/jsLogo.png",
+        title: "JavaScript",
+        description: "I'm very comfortable using both browser JS and Node.js.",
+        route: "/soon#js"
+      },
+      {
+        image: "/assets/images/tsLogo.png",
+        title: "TypeScript",
+        description: "I have made a few libraries with TypeScript and am comfortable using it.",
+        route: "/soon#ts"
+      },
+      {
+        image: "/assets/images/vueLogo.png",
+        title: "Vue.js",
+        description: "I understand the Vue ecosystem and can make websites like this one.",
+        route: "/soon#vue"
+      },
+      {
+        image: "/assets/images/cppLogo.png",
+        title: "C/C++",
+        description: "I can write fast and efficient algorithms to solve almost any problem.",
+        route: "/soon#cpp"
+      },
+      {
+        image: "/assets/images/pyLogo.png",
+        title: "Python",
+        description: "I have made many projects and command line tools using Python.",
+        route: "/soon#py"
+      },
+      {
+        image: "/assets/images/dbLogo.png",
+        title: "MySQL & MongoDB",
+        description: "These always help while working on projects.",
+        route: "/soon#db"
+      }]
+  })
+}
 </script>

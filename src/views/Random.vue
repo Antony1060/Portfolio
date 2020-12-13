@@ -9,7 +9,7 @@
                   append-icon="add"
                   @click:append="incrementMin()"
                   prepend-inner-icon="remove"
-                  @click:prepend-inner="decrementMin"
+                  @click:prepend-inner="decrementMin()"
                   @input="handleChangeMin()"
           ></v-text-field>
           <v-text-field
@@ -18,7 +18,7 @@
                   append-icon="add"
                   @click:append="incrementMax()"
                   prepend-inner-icon="remove"
-                  @click:prepend-inner="decrementMax"
+                  @click:prepend-inner="decrementMax()"
                   @input="handleChangeMax()"
           ></v-text-field>
           <v-select :items="baseItems" v-model="base"></v-select>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  //import axios from 'axios'
 
   export default {
       name: "Random",
@@ -50,24 +50,26 @@
       methods: {
           send() {
               this.loading = true;
-              axios({
-                  url: "https://api.random.org/json-rpc/2/invoke",
-                  method: "POST",
-                  data: {
-                      "jsonrpc": "2.0",
-                      "method": "generateIntegers",
-                      "params": {
-                          "apiKey": "3a09bd1b-5abd-4118-88df-3e12937aa87a",
-                          "n": 1,
-                          "min": this.min,
-                          "max": this.max,
-                          "base": parseInt(this.base.substring(0, 2))
-                      },
-                      "id": 2
-                  }
-              }).then(response => {
-                  this.randNum = response.data.result.random.data[0];
-                  this.loading = false;
+              fetch("https://api.random.org/json-rpc/2/invoke", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  "jsonrpc": "2.0",
+                  "method": "generateIntegers",
+                  "params": {
+                      "apiKey": "3a09bd1b-5abd-4118-88df-3e12937aa87a",
+                      "n": 1,
+                      "min": this.min,
+                      "max": this.max,
+                      "base": parseInt(this.base.substring(0, 2))
+                  },
+                  "id": 2
+                })
+              }).then(res => res.json()).then(response => {
+                this.randNum = response.result.random.data[0];
+                this.loading = false;
               })
           },
           incrementMin() {

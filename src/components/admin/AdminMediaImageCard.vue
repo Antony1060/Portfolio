@@ -8,6 +8,31 @@
       @click="previewDialog = true"
     ></v-img>
 
+    <v-card-actions class="grey lighten-2">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <p class="text--center ma-auto ml-2" style="max-width: 120px; max-height: 24px; overflow: hidden;" v-on="on" v-bind="attrs">
+            <v-checkbox dense class="ma-0 pa-0 blackText" :label="fileData.name" v-model="checked" @click="check()"></v-checkbox>
+          </p>
+        </template>
+        <span>{{ fileData.name }}</span>
+      </v-tooltip>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon @click="renameDialog = true">
+        <v-icon>edit</v-icon>
+      </v-btn>
+
+      <v-btn icon @click="copy">
+        <v-icon>content_copy</v-icon>
+      </v-btn>
+
+      <v-btn icon @click="deleteDialog = true">
+        <v-icon>delete</v-icon>
+      </v-btn>
+    </v-card-actions>
+
     <v-dialog v-model="previewDialog" max-width="80vw" max-height="80vh">
       <v-card color="grey" @click="previewDialog = false">
         <v-img
@@ -77,29 +102,6 @@
         </v-col>
       </v-card>
     </v-dialog>
-
-    <v-card-actions class="grey lighten-2">
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <p class="text--center ma-auto ml-2" style="max-width: 100px; max-height: 24px; overflow: hidden;" v-on="on" v-bind="attrs">{{ fileData.name }}</p>
-        </template>
-        <span>{{ fileData.name }}</span>
-      </v-tooltip>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon @click="renameDialog = true">
-        <v-icon>edit</v-icon>
-      </v-btn>
-
-      <v-btn icon @click="copy">
-        <v-icon>content_copy</v-icon>
-      </v-btn>
-
-      <v-btn icon @click="deleteDialog = true">
-        <v-icon>delete</v-icon>
-      </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
@@ -128,7 +130,8 @@ export default {
     deleting: false,
     renameDialog: false,
     renaming: false,
-    newName: ""
+    newName: "",
+    checked: false
   }),
   computed: {
     extension() {
@@ -146,6 +149,7 @@ export default {
       this.deleting = true;
       util.request("/media/delete", {}, { name }, "DELETE").then(() => {
         eventBus.$emit("file-delete", name)
+        this.deleteDialog = false;
         this.deleting = false;
       }).catch(error => {
         let errorMessage = "Unknown"
@@ -159,11 +163,11 @@ export default {
     renameFile() {
       let name = this.fileData.name
       let newName = this.newName + "." + this.extension
-      if(newName.length - this.extension.length > 32) {
+      if(this.newName.length > 32) {
         this.$store.commit("pushAlert", { text: `Renaming failed. Too many characters (max 32)`, type: "error" })
         return
       }
-      if(newName.length - this.extension.length < 0) {
+      if(this.newName.length <= 0) {
         this.$store.commit("pushAlert", { text: `Renaming failed. Name can't be empty`, type: "error" })
         return
       }
@@ -178,7 +182,24 @@ export default {
         this.renameDialog = false;
         this.renaming = false;
       })
+    },
+
+    check() {
+      eventBus.$emit("media-check", { name: this.fileData.name, state: this.checked })
     }
+  },
+  mounted() {
+    eventBus.$on("media-select", (data) => {
+      if(data.name !== this.fileData.name) return
+
+      this.checked = data.state
+    })
   }
 }
 </script>
+
+<style scoped>
+.blackText /deep/ label {
+  color: black;
+}
+</style>

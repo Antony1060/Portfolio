@@ -23,7 +23,7 @@
       },
       mounted() {
           if(this.$router.currentRoute.fullPath === "/#skills") {
-              this.$vuetify.goTo("#skills", { offset: -80, duration: 0 });
+              this.$vuetify.goTo("#skills", { offset: -20 });
           }
       }
   }

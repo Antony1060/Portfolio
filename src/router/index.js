@@ -6,7 +6,6 @@ import Random from '../views/Random.vue'
 import Login from '../views/Login.vue'
 import AdminPanel from '../views/admin/AdminPanel.vue'
 import AdminMedia from '../views/admin/AdminMedia.vue'
-import PrivateTimetable from "../views/PrivateTimetable";
 import Soon from "../views/Soon";
 import NotFound from "../views/NotFound";
 
@@ -71,14 +70,6 @@ const routes = [
     }
   },
   {
-    path: "/timetable",
-    name: "Timetable",
-    component: PrivateTimetable,
-    meta: {
-      title: "Timetable"
-    }
-  },
-  {
     path: "/soon",
     name: "Soon",
     component: Soon,
@@ -87,16 +78,12 @@ const routes = [
     }
   },
   {
-    path: "/404",
+    path: "*",
     name: "404",
     component: NotFound,
     meta: {
       title: "404 Not Found"
     }
-  },
-  {
-    path: "*",
-    redirect: "/404"
   }
 ];
 
@@ -138,7 +125,7 @@ function isAuthenticated() {
     if(!token) resolve(false)
   
     util.request("/auth/validate", {}, { token }, "POST").then(response => {
-      resolve(response.data.data.valid)
+      resolve(response.data.valid)
     }).catch(error => {
       console.log(error)
       resolve()

@@ -1,4 +1,3 @@
-import axios from "axios"
 import qs from "querystring"
 
 const baseUrl = "https://backend.antony.red"
@@ -24,8 +23,8 @@ export default {
   /**
    * 
    * @param {String} url
-   * @param {import("axios").AxiosRequestConfig} options 
-   * @param {JSON} data
+   * @param {Object} options 
+   * @param {Object} data
    * @returns {Promise} Promise from request
    */
   request(url, options, data, method) {
@@ -34,7 +33,29 @@ export default {
     if(!method) method = "POST"
 
     return new Promise((resolve, reject) => {
-      axios(this.concatJson({
+      if(!url.startsWith("/")) url = `/${url}`;
+      fetch(`${baseUrl}${url}`, this.concatJson({
+        method,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Authorization": localStorage.getItem("jwtToken")
+        },
+      }, options, { body: method === "HEAD" || method === "GET" ? null : qs.stringify(data) })).then(async res => {
+        const response = await res.json();
+        if(res.status < 200 || res.status >= 300) {
+          reject(response.error ? response.error : res.status);
+          return
+        }
+        if(response.tokenData) {
+          if(!response.tokenData.valid) {
+            localStorage.removeItem("jwtToken");
+            reject("Invalid JWT Token");
+            return
+          }
+        }
+        resolve(response)
+      }).catch(reject)
+      /*axios(this.concatJson({
         url: baseUrl + url,
         method,
         headers: { 
@@ -49,7 +70,7 @@ export default {
           }
         }
         resolve(response)
-      }).catch(reject)
+      }).catch(reject)*/
     })
   }
 }
