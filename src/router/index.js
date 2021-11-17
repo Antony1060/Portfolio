@@ -111,7 +111,7 @@ router.beforeEach(async (to, from, next) => {
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = "AntonySite | " + (to.meta.title || "Unknown page");
+  document.title = "AntonyDev | " + (to.meta.title || "Unknown page");
   next();
 });
 

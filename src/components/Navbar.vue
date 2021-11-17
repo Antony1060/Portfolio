@@ -4,7 +4,7 @@
       <v-toolbar-title @click="this.$router.push('/')">
         <router-link to="/" id="title" class="black--text" style="text-decoration: none">
           <span class="font-weight-light grey--text text--lighten-2">Antony</span>
-          <span class="font-weight-bold grey--text text--lighten-2">Site</span>
+          <span class="font-weight-bold grey--text text--lighten-2">Dev</span>
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>

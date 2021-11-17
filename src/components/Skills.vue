@@ -5,13 +5,20 @@
         <p class="display-1">My skills</p>
       </v-row>
     </v-layout>
-    <v-layout row justify-center wrap class="ma-2 mb-12" style="flex-wrap: wrap">
-      <SkillsCard v-for="(item, index) in skills" :key="index"
-        :image="item.image"
-        :title="item.title"
-        :description="item.description"
-        :route="item.route"/>
-    </v-layout>
+    <div v-for="(skills, name) in skills" :key="name">
+      <v-layout row justify-center>
+        <v-row justify="center">
+          <p style="font-size: 2rem">{{ name }}</p>
+        </v-row>
+      </v-layout>
+      <v-layout row justify-center wrap class="ma-2 mb-12" style="flex-wrap: wrap">
+        <SkillsCard v-for="(item, index) in skills" :key="index"
+          :image="item.image"
+          :title="item.title"
+          :description="item.description"
+          :route="item.route"/>
+      </v-layout>
+    </div>
   </v-container>
 </template>
 
@@ -24,54 +31,124 @@ export default {
     SkillsCard
   },
   data: () => ({
-    skills: [{
-        image: "/assets/images/javaLogo.png",
-        title: "Java",
-        description: "I can make all sorts of programs in Java. From simple CLIs to GUIs.",
-        route: "/soon#java"
-      },
-      {
-        image: "/assets/images/kotlinLogo.png",
-        title: "Kotlin",
-        description: "I have worked on many projects built with the Kotlin language.",
-        route: "/soon#kotlin"
-      },
-      {
-        image: "/assets/images/jsLogo.png",
-        title: "JavaScript",
-        description: "I'm very comfortable using both browser JS and Node.js.",
-        route: "/soon#js"
-      },
-      {
-        image: "/assets/images/tsLogo.png",
-        title: "TypeScript",
-        description: "I have made a few libraries with TypeScript and am comfortable using it.",
-        route: "/soon#ts"
-      },
-      {
-        image: "/assets/images/vueLogo.png",
-        title: "Vue.js",
-        description: "I understand the Vue ecosystem and can make websites like this one.",
-        route: "/soon#vue"
-      },
-      {
-        image: "/assets/images/cppLogo.png",
-        title: "C/C++",
-        description: "I can write fast and efficient algorithms to solve almost any problem.",
-        route: "/soon#cpp"
-      },
-      {
-        image: "/assets/images/pyLogo.png",
-        title: "Python",
-        description: "I have made many projects and command line tools using Python.",
-        route: "/soon#py"
-      },
-      {
-        image: "/assets/images/dbLogo.png",
-        title: "MySQL & MongoDB",
-        description: "These always help while working on projects.",
-        route: "/soon#db"
-      }]
+    skills: {
+      "Languages & frameworks": [
+        {
+          image: "/assets/images/java.png",
+          title: "Java"
+        },
+        {
+          image: "/assets/images/kotlin.png",
+          title: "Kotlin"
+        },
+        {
+          image: "/assets/images/typescript.png",
+          title: "TypeScript"
+        },
+        {
+          image: "/assets/images/javascript.png",
+          title: "JavaScript"
+        },
+        {
+          image: "/assets/images/react.svg",
+          title: "ReactJS"
+        },
+        {
+          image: "/assets/images/vue.png",
+          title: "Vue.js"
+        },
+        {
+          image: "/assets/images/golang.svg",
+          title: "GoLang"
+        },
+        {
+          image: "/assets/images/cpp.png",
+          title: "C/C++"
+        },
+        {
+          image: "/assets/images/python.png",
+          title: "Python"
+        },
+        {
+          image: "/assets/images/php.svg",
+          title: "PHP"
+        }
+      ],
+      Databases: [
+        {
+          image: "/assets/images/mysql.png",
+          title: "MySQL"
+        },
+        {
+          image: "/assets/images/mongodb.png",
+          title: "MongoDB"
+        },
+        {
+          image: "/assets/images/cassandra.png",
+          title: "Cassandra"
+        },
+        {
+          image: "/assets/images/scylla.svg",
+          title: "Scylla"
+        },
+        {
+          image: "/assets/images/redis.svg",
+          title: "Redis"
+        }
+      ],
+      Tools: [
+        {
+          image: "/assets/images/yarn.svg",
+          title: "Yarn"
+        },
+        {
+          image: "/assets/images/npm.svg",
+          title: "npm"
+        },
+        {
+          image: "/assets/images/docker.png",
+          title: "Docker"
+        },
+        {
+          image: "/assets/images/kubernetes.svg",
+          title: "Kubernetes"
+        },
+        {
+          image: "/assets/images/git.png",
+          title: "Git"
+        },
+        {
+          image: "/assets/images/parcel.png",
+          title: "Parcel"
+        },
+        {
+          image: "/assets/images/terraform.svg",
+          title: "Terraform"
+        },
+        {
+          image: "/assets/images/ansible.svg",
+          title: "Ansible"
+        },
+        {
+          image: "/assets/images/bash.svg",
+          title: "Bash"
+        }
+      ],
+      Methodologies: [
+        {
+          image: "/assets/images/containerization.png",
+          title: "Containerization"
+        },
+        {
+          image: "/assets/images/agile.png",
+          title: "Agile Development"
+        },
+        {
+          image: "/assets/images/devops.png",
+          title: "DevOps"
+        }
+      ]
+    }
   })
 }
 </script>

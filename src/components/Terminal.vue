@@ -71,7 +71,7 @@ export default {
       }
     },
     buildContext() {
-      const args = this.command.split(/ +/g);
+      const args = this.command.split(/ +/g).filter(it => it);
       const command = args.shift().toLowerCase();
 
       return {

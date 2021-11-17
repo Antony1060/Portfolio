@@ -3,16 +3,30 @@
     <v-layout row wrap justify-center class="text-center skewEffectText">
       <v-row justify="center" xs12>
         <div class="hidden-xs-only">
-          <p class="display-1 font-weight-regular mt-12">Want to reach out to me?</p><br>
-          <span class="headline font-weight-light">Discord: <span class="font-italic">Antony#9971</span></span><br>
-          <span class="headline font-weight-light">Email me: <a class="font-italic indigo--text font-weight-regular" href="mailto:antony@antony.red">antony@antony.red</a></span><br>
-          <span class="headline font-weight-light">Tweet at me <a class="font-italic indigo--text font-weight-regular" href="https://twitter.com/AntonyThe1060">@AntonyThe1060</a></span><br>
+          <p class="display-1 font-weight-regular mt-12">My contact information</p><br>
+          <div v-if="this.contactInfo === null">
+            <span class="headline font-weight-light">Loading...</span>
+          </div>
+          <div v-else>
+            <span class="headline font-weight-light">Discord: <span class="font-italic">{{ this.contactInfo.discord }}</span></span><br>
+            <span class="headline font-weight-light">Github: <a class="indigo--text font-weight-regular" :href="this.contactInfo.github">Antony1060</a></span> <br>
+            <span class="headline font-weight-light">Email: <a class="indigo--text font-weight-regular" href="mailto:antony@antony.red">antony@antony.red</a></span><br>
+            <span class="headline font-weight-light">Linked In: <a class="indigo--text font-weight-regular" :href="this.contactInfo.linkedIn">/in/Antony1060</a></span><br>
+            <span class="headline font-weight-light">Twitter: <a class="indigo--text font-weight-regular" :href="this.contactInfo.twitter">@AntonyThe1060</a></span><br>
+          </div>
         </div>
         <div class="hidden-sm-and-up">
-          <p class="font-weight-regular mt-8" style="font-size: 28px">Want to reach out to me?</p><br>
-          <span class="headline font-weight-light">Discord: <span class="font-italic">Antony#9971</span></span><br>
-          <span class="headline font-weight-light">Email me: <a class="font-italic indigo--text font-weight-regular" href="mailto:antony@antony.red">antony@antony.red</a></span><br>
-          <span class="headline font-weight-light">Tweet at me <a class="font-italic indigo--text font-weight-regular" href="https://twitter.com/AntonyThe1060">@AntonyThe1060</a></span><br>
+          <p class="font-weight-regular mt-8" style="font-size: 28px">My contact information</p><br>
+          <div v-if="this.contactInfo === null">
+            <span class="headline font-weight-light">Loading...</span>
+          </div>
+          <div v-else>
+            <span class="headline font-weight-light">Discord: <span class="font-italic">{{ this.contactInfo.discord }}</span></span><br>
+            <span class="headline font-weight-light">Github: <a class="indigo--text font-weight-regular" :href="this.contactInfo.github">Antony1060</a></span> <br>
+            <span class="headline font-weight-light">Email: <a class="indigo--text font-weight-regular" href="mailto:antony@antony.red">antony@antony.red</a></span><br>
+            <span class="headline font-weight-light">Linked In: <a class="indigo--text font-weight-regular" :href="this.contactInfo.linkedIn">/in/Antony1060</a></span><br>
+            <span class="headline font-weight-light">Twitter: <a class="indigo--text font-weight-regular" :href="this.contactInfo.twitter">@AntonyThe1060</a></span><br>
+          </div>
         </div>
       </v-row>
     </v-layout>
@@ -20,15 +34,25 @@
 </template>
 
 <script>
+import util from '../util/util'
+
   export default {
     name: "Contact",
+    data: () => ({
+      contactInfo: null
+    }),
+    mounted() {
+      util.request("/about/contact", {}, {}, "GET").then(data => {
+        this.contactInfo = data
+      })
+    }
   }
 </script>
 
 <style>
 .skewEffectContainer {
   transform: skewY(1deg);
-  height: 300px;
+  height: 350px;
   transition: 0.06s linear;
 }
 
