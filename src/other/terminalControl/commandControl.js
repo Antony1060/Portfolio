@@ -4,6 +4,10 @@ import whoami from "./commands/whoami";
 import ls from "./commands/ls";
 import sudo from "./commands/sudo";
 import exit from "./commands/exit";
+import rm from "./commands/rm";
+import cd from "./commands/cd";
+import flip from "./commands/flip";
+import invert from "./commands/invert";
 
 export default class CommandControl {
 
@@ -13,8 +17,12 @@ export default class CommandControl {
         this.addCommand("clear", clear);
         this.addCommand("whoami", whoami);
         this.addCommand("ls", ls);
-        this.addCommand("exit", exit)
-        this.addCommand("sudo", sudo)
+        this.addCommand("exit", exit);
+        this.addCommand("sudo", sudo);
+        this.addCommand("rm", rm);
+        this.addCommand("cd", cd);
+        this.addCommand("flip", flip);
+        this.addCommand("invert", invert)
     }
 
     addCommand(trigger, handler, aliases = []) {
