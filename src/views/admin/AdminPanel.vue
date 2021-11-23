@@ -47,6 +47,7 @@ export default {
       if(this.$store.state.socket) return;
       
       this.$store.state.socket = io(process.env.VUE_APP_SOCKET_URL, {
+        path: "/backend",
         auth: {
           token: localStorage.getItem("jwtToken")
         }
