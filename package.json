@@ -1,10 +1,10 @@
 {
-  "name": "AntonyDev",
+  "name": "antony-dev",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 80",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --port 1024",
+    "build": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -16,7 +16,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.21",
     "material-design-icons-iconfont": "^5.0.1",
-    "socket.io-client": "^2.3.0",
+    "socket.io-client": "^4.4.0",
     "vue": "^2.6.11",
     "vue-clipboard2": "^0.3.1",
     "vue-router": "^3.1.6",

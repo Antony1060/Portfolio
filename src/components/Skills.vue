@@ -98,12 +98,28 @@ export default {
       ],
       Tools: [
         {
+          image: "/assets/images/maven.png",
+          title: "Maven"
+        },
+        {
+          image: "/assets/images/gradle.svg",
+          title: "Gradle"
+        },
+        {
           image: "/assets/images/yarn.svg",
           title: "Yarn"
         },
         {
           image: "/assets/images/npm.svg",
           title: "npm"
+        },
+        {
+          image: "/assets/images/jest.svg",
+          title: "Jest"
+        },
+        {
+          image: "/assets/images/eslint.svg",
+          title: "ESLint"
         },
         {
           image: "/assets/images/docker.png",

@@ -1,6 +1,6 @@
 import qs from "querystring"
 
-const baseUrl = "https://backend.antony.red"
+const baseUrl = process.env.VUE_APP_BACKEND_URL
 
 export default {
   /**
@@ -55,22 +55,6 @@ export default {
         }
         resolve(response)
       }).catch(reject)
-      /*axios(this.concatJson({
-        url: baseUrl + url,
-        method,
-        headers: { 
-          "Content-Type": "application/x-www-form-urlencoded",
-          "Authorization": localStorage.getItem("jwtToken")
-        } 
-      }, options, { data: qs.stringify(data) })).then(response =>  {
-        if(response.data.tokenData) {
-          if(!response.data.tokenData.valid) {
-            localStorage.removeItem("jwtToken")
-            reject("Invalid JWT Token")
-          }
-        }
-        resolve(response)
-      }).catch(reject)*/
     })
   }
 }
