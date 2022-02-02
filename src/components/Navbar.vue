@@ -7,7 +7,7 @@
           <span class="font-weight-bold grey--text text--lighten-2">Dev</span>
         </router-link>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-toolbar-items>
         <v-btn text class="blue--text" router to="/">
           Home

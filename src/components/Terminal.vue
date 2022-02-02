@@ -3,7 +3,7 @@
     <v-layout row justify-center>
       <v-flex xs12 lg8>
         <v-card class="pa-4 mt-8 mb-8 mx-6" style="font-family: monospace;" dark>
-          <div id="terminal" @click.prevent="focusToTerminal()" @mouseenter="focusToTerminal()">
+          <div id="terminal" @click="focusToTerminal" @mouseenter="focusToTerminal">
             <span v-for="(item, index) in executionOrder.filter(it => it.display)" :key="index">
               <span v-if="item.trigger">
                 <span v-html="tConst.PROMPT"></span>
@@ -42,7 +42,9 @@ export default {
         trigger: null,
         response: util.formatTerminalText(`
            ${color.yellowBright}Welcome to my website!${color.reset} here you can see my work and what I'm capable of. You can also ${color.bold.cyanBright}interact${color.reset} with this terminal :)
-           ${color.bold.yellowBright}Warning: ${color.bold.white}This is still in the beta stage and may not work fully${color.reset}
+
+           ${color.bold.redBright}NOTE: ${color.redBright} This website is deprecated! The information is still correct, but it's ugly and sucky and I want to remake it.
+           For more accurate information, visit [antony.contact](https://antony.contact) until I remake this one.
         `),
         display: true
       }
@@ -86,8 +88,11 @@ export default {
       this.commandShift.trigger = this.commandShift.index <= 0 ? "" : this.executionOrder[this.executionOrder.length - this.commandShift.index].trigger;
       this.command = this.commandShift.trigger
     },
-    focusToTerminal() {
-      document.getElementById("terminalInput").focus();
+    focusToTerminal(e) {
+      if(!e.target.classList.contains("terminal-injected-link")) {
+        e.preventDefault();
+        document.getElementById("terminalInput").focus();
+      }
     }
   }
 }
