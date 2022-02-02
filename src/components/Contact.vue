@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import util from '../util/util'
+  import axios from "axios";
 
   export default {
     name: "Contact",
@@ -42,7 +42,7 @@ import util from '../util/util'
       contactInfo: null
     }),
     mounted() {
-      util.request("/about/contact", {}, {}, "GET").then(data => {
+      axios.get("https://backend.antony.red/about/contact").then(data => {
         this.contactInfo = data
       })
     }

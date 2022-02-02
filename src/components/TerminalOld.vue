@@ -16,7 +16,6 @@
           <span class="white--text" id="cmd3"></span><br>
           <span class="green--text" id="root4"></span>
           <span class="white--text" id="cmd4"></span><br>
-          <router-link v-for="(project, index) in this.$store.state.liveProjects" :key="index" :to="project.path" style="text-decoration: none;" class="mr-4"><span class="red--text" :id="'proj' + index"></span></router-link>
           <br><br><br><br><br><br><br><br><br>
         </v-card>
       </v-flex>
@@ -38,7 +37,7 @@
                   let root = "[root@antony.red ~]# ";
                   let cd = "cd ./Projects";
                   let ls = "ls";
-                  let projects = this.$store.state.liveProjects;
+                  let projects = {};
 
                   let cmd3 = document.getElementById("cmd3");
                   let root4 = document.getElementById("root4");

@@ -3,18 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Cps from '../views/Cps.vue'
 import Random from '../views/Random.vue'
-import Login from '../views/Login.vue'
-import AdminPanel from '../views/admin/AdminPanel.vue'
-import AdminMedia from '../views/admin/AdminMedia.vue'
-import Soon from "../views/Soon";
 import NotFound from "../views/NotFound";
 
-import util from "../util/util"
-
 Vue.use(VueRouter);
-
-const restrictLogged = ["Login"]
-const allowLogged = ["AdminPanel", "AdminMedia"]
 
 const routes = [
   {
@@ -42,42 +33,6 @@ const routes = [
     }
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
-    meta: {
-      title: "Login"
-    }
-  },
-  {
-    path: "/admin",
-    redirect: "/admin/main"
-  },
-  {
-    path: "/admin/main",
-    name: "AdminPanel",
-    component: AdminPanel,
-    meta: {
-      title: "Admin Panel"
-    }
-  },
-  {
-    path: "/admin/media",
-    component: AdminMedia,
-    name: "AdminMedia",
-    meta: {
-      title: "Admin Media Panel"
-    }
-  },
-  {
-    path: "/soon",
-    name: "Soon",
-    component: Soon,
-    meta: {
-      title: "To be added"
-    }
-  },
-  {
     path: "*",
     name: "404",
     component: NotFound,
@@ -93,44 +48,9 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach(async (to, from, next) => {
-  if(!restrictLogged.includes(to.name) && !allowLogged.includes(to.name)) {
-    next()
-    return
-  }
-
-  let authenticated = await isAuthenticated()
-  if(restrictLogged.includes(to.name) && authenticated) {
-    next({ name: "AdminPanel" })
-    return
-  } else if(allowLogged.includes(to.name) && !authenticated) {
-    next({ name: "Login" })
-    return
-  }
-  next()
-})
-
 router.beforeEach((to, from, next) => {
   document.title = "AntonyDev | " + (to.meta.title || "Unknown page");
   next();
 });
-
-/**
- * @returns {Boolean} True if authenticated, false if not.
- */
-function isAuthenticated() {
-  return new Promise((resolve) => {
-    let token = localStorage.getItem("jwtToken");
-
-    if(!token) resolve(false)
-  
-    util.request("/auth/validate", {}, { token }, "POST").then(response => {
-      resolve(response.data.valid)
-    }).catch(error => {
-      console.log(error)
-      resolve()
-    })
-  })
-}
 
 export default router
