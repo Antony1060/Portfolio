@@ -2,4 +2,4 @@
 
 # AntonySite
 
-This is a personal Portfolio website I'm making.
+This is a personal Portfolio website I was making.
